@@ -7,7 +7,13 @@ def main():
     Neuron.eta = 0.09
     Neuron.alpha = 0.015
     inputs = [[0, 0], [0, 1], [1, 0], [1, 1]]
-    outputs = [[0], [0], [0], [1]] # AND gate
+    outputs = []
+    gates = [[[0], [0], [0], [1]], [[0], [1], [1], [1]], [[0], [1], [1], [0]]] # AND, OR, XOR respectively
+    while True:
+        gate = int(input("Enter 1 to train for AND gate, 2 to train for OR gate, 3 to train for XOR gate"))
+        if gate == 1 or gate == 2 or gate == 3:
+            outputs = gates[gate - 1]
+            break
     while True:
         err = 0
         for i in range(len(inputs)):
