@@ -23,6 +23,7 @@ def main():
             err += net.getError(outputs[i])
         print("Error: ", err)
         if(err < 0.01):
+            export_network(net)
             break
     while True:
         a = int(input("Enter first input : "))
@@ -30,6 +31,12 @@ def main():
         net.setInput((a, b))
         net.feedForward()
         print(net.getThresholdResults())
+
+def export_network(net):
+    import json
+    s = json.dumps(net, default=lambda x: x.__dict__)
+    with open("network.txt", "w") as f:
+        f.write(s)
 
 if(__name__ == "__main__"):
     main()
